@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VRM Debugger</title>
+  </head>
+  <body>
+    <aside id="sidebar">
+      <h1 class="app-title">VRM Debugger</h1>
+
+      <section class="panel">
+        <h2 class="panel-title">モデル</h2>
+        <button id="btn-load-vrm" class="btn btn-primary">VRM を読み込む</button>
+        <input id="input-vrm" type="file" accept=".vrm" hidden />
+        <div id="vrm-info" class="info-box"></div>
+      </section>
+
+      <section class="panel">
+        <h2 class="panel-title">アニメーション</h2>
+        <button id="btn-load-vrma" class="btn btn-secondary">VRMA を追加</button>
+        <input id="input-vrma" type="file" accept=".vrma" multiple hidden />
+        <div id="animation-list" class="anim-list"></div>
+        <button id="btn-stop" class="btn btn-ghost" style="display:none">■ 停止</button>
+      </section>
+    </aside>
+
+    <main id="canvas-container">
+      <canvas id="canvas"></canvas>
+      <div id="loading" class="loading hidden">読み込み中...</div>
+    </main>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
