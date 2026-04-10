@@ -313,6 +313,7 @@ onResize();
 
 function animate(): void {
   requestAnimationFrame(animate);
+  timer.update();
   const delta = timer.getDelta();
   currentVRM?.update(delta);
   mixer?.update(delta);
