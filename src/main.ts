@@ -5,6 +5,7 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 import { VRMLoaderPlugin, VRMUtils, type VRM } from "@pixiv/three-vrm";
 import {
   VRMAnimationLoaderPlugin,
+  VRMLookAtQuaternionProxy,
   createVRMAnimationClip,
 } from "@pixiv/three-vrm-animation";
 
@@ -164,6 +165,13 @@ async function loadVRM(file: File): Promise<void> {
     stopAnimation();
     currentVRM = vrm;
     scene.add(vrm.scene);
+
+    if (vrm.lookAt) {
+      const lookAtProxy = new VRMLookAtQuaternionProxy(vrm.lookAt);
+      lookAtProxy.name = "VRMLookAtQuaternionProxy";
+      vrm.scene.add(lookAtProxy);
+    }
+
     mixer = new THREE.AnimationMixer(vrm.scene);
 
     await rebuildClips();
