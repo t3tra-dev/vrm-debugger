@@ -2,6 +2,7 @@ import "./style.css";
 import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+import { KTX2Loader } from "three/examples/jsm/loaders/KTX2Loader.js";
 import { VRMLoaderPlugin, VRMUtils, type VRM } from "@pixiv/three-vrm";
 import {
   VRMAnimationLoaderPlugin,
@@ -115,6 +116,10 @@ interface AnimEntry {
 const animEntries: AnimEntry[] = [];
 
 const loader = new GLTFLoader();
+const ktx2Loader = new KTX2Loader()
+  .setTranscoderPath(`${import.meta.env.BASE_URL}basis/`)
+  .detectSupport(renderer);
+loader.setKTX2Loader(ktx2Loader);
 loader.register((parser) => new VRMLoaderPlugin(parser));
 loader.register((parser) => new VRMAnimationLoaderPlugin(parser));
 
